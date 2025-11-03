@@ -19,7 +19,8 @@ class SupportFooter(Gtk.Box):
 
         for i, (url, label, icon) in enumerate(self.urls_labels):
             link_button = Gtk.LinkButton(uri=url, label=label)
-            if icon_path := get_icon_path(icon):
+            icon_path = get_icon_path(icon)
+            if icon_path:
                 icon_img = Gtk.Image.new_from_file(icon_path)
                 link_button.set_image(icon_img)
             self.pack_start(link_button, False, False, 0)

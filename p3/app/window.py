@@ -648,7 +648,8 @@ class AppWindow(Gtk.ApplicationWindow):
     async def _process_needed_scripts(self, script_infos):
         deps = []
         for info in script_infos:
-            if has_depends := info.get('needed'):
+            has_depends = info.get('needed')
+            if has_depends:
                 tasks = [cli_helper.find_script_by_name_async(_d, self.translations) for _d in has_depends]
                 res = await asyncio.gather(*tasks)
                 deps.extend([r for r in res if r])
